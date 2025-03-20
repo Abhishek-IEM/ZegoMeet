@@ -32,7 +32,7 @@ function VideoRoom() {
       sharedLinks: [
         {
           name: "copy link",
-          url: `https://zego-meet/room/${roomID}`,
+          url: `https://zego-meet.vercel.app/room/${roomID}`,
         },
       ],
       scenario: {
