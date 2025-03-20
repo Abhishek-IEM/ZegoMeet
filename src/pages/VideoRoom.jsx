@@ -32,7 +32,7 @@ function VideoRoom() {
       sharedLinks: [
         {
           name: "copy link",
-          url: `https://zego-meet.netlify.app/room/${roomID}`,
+          url: `https://zego-meet/room/${roomID}`,
         },
       ],
       scenario: {
