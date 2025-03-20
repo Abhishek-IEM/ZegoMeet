@@ -4,14 +4,14 @@ import { useParams } from "react-router-dom";
 
 function VideoRoom() {
   let { roomID } = useParams();
-  const meetingContainerRef = useRef(null); 
+  const meetingContainerRef = useRef(null);
 
   useEffect(() => {
     const appID = Number(import.meta.env.VITE_APP_ID);
     const serverSecret = import.meta.env.VITE_SERVER_SECRET;
 
-    console.log("APP ID:", appID); 
-    console.log("SERVER SECRET:", serverSecret); 
+    console.log("APP ID:", appID);
+    console.log("SERVER SECRET:", serverSecret);
 
     if (!appID || !serverSecret) {
       console.error("App ID or Server Secret is missing!");
@@ -28,7 +28,7 @@ function VideoRoom() {
 
     const zp = ZegoUIKitPrebuilt.create(kitToken);
     zp.joinRoom({
-      container: meetingContainerRef.current, 
+      container: meetingContainerRef.current,
       sharedLinks: [
         {
           name: "copy link",
@@ -38,12 +38,21 @@ function VideoRoom() {
       scenario: {
         mode: ZegoUIKitPrebuilt.OneONoneCall,
       },
+      turnOnMicrophoneWhenJoining: true,
+      showMyAudioStatus: true,
+      showScreenSharingButton: false,
+      showLeavingConfirmDialog: true,
+      audio: {
+        echoCancellation: true,
+        noiseSuppression: true,
+        autoGainControl: true,
+      },
     });
-  }, [roomID]); 
+  }, [roomID]);
 
   return (
     <div className="video-container">
-      <div ref={meetingContainerRef} /> 
+      <div ref={meetingContainerRef} />
     </div>
   );
 }
